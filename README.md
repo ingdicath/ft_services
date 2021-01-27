@@ -1,9 +1,35 @@
 # **ft_services**
 CODAM project Curriculum 2019
 
-Topic: System Administration and Networking project.
+**Project type**: System Administration and Networking project.
+**Objective**: Setting up an infrastructure of different services using **Kubernetes**.
 
 ----
+## Requeriments
+
+ This proyect is aimed to set up a multi-service cluster. It must meet the following requirements:
+
+- Each service will have to **run in a dedicated container**.
+- Each container must bear the same name as the service concerned.
+- For performance reasons, containers have to be build using **Alpine Linux**.
+- Containers will need to have a Dockerfile which is called in the setup.sh
+- Build by yourself the images that the project will use. 
+
+Mandatory set ups:
+- The _Kubernetes web dashboard_.
+- The _Load Balancer_(MetalLB).  It will be the only entry point to your cluster. Load Balancer will have a single ip.
+- A _WordPress website_ listening on port 5050.
+- _phpMyAdmin_, listening on port 5000 and linked with the __MySQL database__ (MariaDB).
+- A container with an _nginx server_ listening on ports 80 and 443.
+- A _FTPS server_ listening on port 21.
+- A _Grafana platform_, listening on port 3000, linked with an _InfluxDB database_.
+
+### Restriccions
+
+- It is forbidden to take already build images or use services like DockerHub.
+- Usage of Node Port services, Ingress Controller object or kubectl port-forward command is prohibited.
+----
+
 ## Prerequisites :warning:
 
 For Windows and if you are using powershell, be sure to run as Administrator.
@@ -19,71 +45,60 @@ For Windows and if you are using powershell, be sure to run as Administrator.
 
 ### minikube
 
-- minikube start
-- minikube dashboard
-- minikube stop
-- minikube profile <"profile's name">
-- minikube delete -p <"profile's name">
-- minikube config: displays a list of all params we can change
-- minikube options:  displays a list of global command-line options (applies to all commands)
-- minikube <"command"> --help
-- minikube ip: show current ip.
+```
+# Start
+minikube start
+# Display dashboard
+minikube dashboard
+# Stop minikube
+minikube stop
+# Display profile
+minikube profile <"profile's name">
+# Delete profile
+minikube delete -p <"profile's name">
+# List all params we can change
+minikube config
+# Display a list of global command-line options (applies to all commands)
+minikube options
+# List help options
+minikube <"command"> --help
+# Display current ip
+minikube ip
+```
 
 ### kubectl
 
 :warning: Before start using this commands, be sure minikube is running.
-
-To display all (namespaces, pods, etc)
 ```
+# Display all (namespaces, pods, etc)
 kubectl get all
-```
-To list the current namespaces in a cluster
-```
+# List the current namespaces in a cluster
 kubectl get namespaces
-```
-List the current pods:
-```
+# List current pods:
 kubectl get pods
-```
-List all pods in ps output format with more information (such as node name):
-```
+# List all pods in ps output format with more information (such as node name):
 kubectl get pods -o wide
-```
-
-To list the current deployments:
-```
+# List the current deployments:
 kubectl get deployments
-```
-To list the current services:
-```
+# List the current services:
 kubectl get services
-```
-To list ingress:
-```
+# List ingress:
 kubectl get ingress
-```
-To display events with changes
-```
+# Display events with changes
 kubectl get events -w
-```
-To allow to change between namespaces. Without the name, it will list all namespaces available.
-```
+# Allow to change between namespaces. Without the name, it will list all namespaces available.
 kubens <"namespace's name">
 ```
 
 #### Create Namespace / POD / Deployment / Service / Ingress
 
-1. Using command line (for namespace)
 ```
+# Using command line (for namespace)
 kubectl create namespace <"namespace's name">
-```
-
-2. Using YALM or JSON file
-```
+#Using YALM or JSON file
 kubectl apply -f <"file name">
 ```
-
-3. From Dashboard on webpage (Except Ingress)
+- From Dashboard on webpage (Except Ingress)
 
 :warning: For Ingress, it's important to allow an addon
 ```
@@ -91,74 +106,47 @@ minikube addons enable ingress
 ```
 
 #### Delete Namespace / Pod / Deployment / Service
-
-1. Using command line (namespace/ pod)
 ```
+# Using command line (namespace/ pod)
 kubectl delete namespace <"namespace's name">
-```
-```
-kubectl delete namespace <"pod's name">
-```
-
-2. Using YALM or JSON file and command line
-```
+# Using YALM or JSON file and command line
 kubectl delete -f <"file name">
 ```
-
-3. From Dashboard on webpage
+- From Dashboard on webpage
 
 
 #### PODs/ Deployment details
 
-- To list the current pods in a cluster:
 ```
+# List the current pods in a cluster
 kubectl get pods
-```
-- To list the current deployment:
-```
+# List the current deployment
 kubectl get deployments
-```
-- To list the deployment apps:
-```
+# List the deployment apps
 kubectl get deployments.apps
-```
-- To see details about a pod/ service:
-```
+# Display details about a pod/ service
 kubectl describe pod <"pod name">
-```
-```
 kubectl describe service <"service name">
-```
-- To see pod's logs:
-```
+# Display pod's logs:
 kubectl logs -f <"file name">
 ```
 
 #### Access to PODs
-
-1.  Using command line
 ```
+# Using command line
 kubectl exec -it <"pod's name"> -- /bin/bash
-```
-Inside the pod, we can check which the Operating System is: cat /etc/*release
-2. From Dashboard on webpage with 'Exec' option
-
-##### Inside the pod
-
-- To list the available hosts inside a pod:
-```
+# Check which the Operating System is (inside the pod) 
+cat /etc/*release
+# List the available hosts(inside the pod)
 cat /etc/hosts
-```
-- To see conexion between two pods (before you had to create a service)
-```
+# Display conexion between two pods (inside the pod; before you had to create a service)
 ping mariadb-service
+#Kubernetes has a intern DNS, for that reason is able to resolve conexion between pods.
 ```
-Kubernetes has a intern DNS, for that reason is able to resolve conexion between pods.
 
 #### Create a Service
-
-1. Using YALM or JSON file
 ```
+#Using YALM or JSON file
 kubectl apply -f <"file name">
 ```
 
@@ -189,40 +177,38 @@ docker ps
 
 ## Useful links
 
-
 - [Kubernetes overview](https://www.youtube.com/watch?v=7bA0gTroJjw)
 - Kubernetes tutorial (in Spanish) - [Curso de Kubernetes Gratis -  Iñigo Serrano](https://www.youtube.com/playlist?list=PLrb1e2Mp6N_uJSNsV-7SqLFaBdImJsI5x)
 - https://github.com/parismart/ft_services#ft_services
 - [Readness and liveness in Kubernetes](https://medium.com/@AADota/kubernetes-liveness-and-readiness-probes-difference-1b659c369e17)
-
 
 ----
 
 ## General info
 
 ### Namespaces
-Kubernetes supports multiple virtual clusters backed by the same physical cluster. These virtual clusters are called namespaces
+Kubernetes supports multiple virtual clusters backed by the same physical cluster. 
+These virtual clusters are called namespaces.
 
 #### When to Use Multiple Namespaces 
-Namespaces are intended for use in environments with many users spread across multiple teams, or projects. For clusters with a few to tens of users, you should not need to create or think about namespaces at all.
+Namespaces are intended for use in environments with many users spread across multiple teams, or projects. 
+For clusters with a few to tens of users, you should not need to create or think about namespaces at all.
 
 
 ### POD
-Pods are the smallest deployable units of computing that you can create and manage in Kubernetes.
 
-Pod is like a container.
-Pod is the minimun unit of work.
-
-A Pod is a group of one or more containers, with shared storage and network resources, and a specification for how to run the containers.
+- Pods are the smallest deployable units of computing that you can create and manage in Kubernetes.
+- Pod is like a container.
+- Pod is the minimun unit of work.
+- A Pod is a group of one or more containers, with shared storage and network resources, and a specification for how to run the containers.
 
 ### DEPLOYMENT
 A Deployment provides declarative updates for Pods and ReplicaSets.
 
 ### Services
 
-Kubernetes Pods are mortal. They are born and when they die, they are not resurrected.
-Kubernetes Pods are created and destroyed to match the state of your cluster. Pods are nonpermanent resources.
-**ReplicaSets** create and destroy **Pods** dynamically 
+- Kubernetes Pods are created and destroyed to match the state of your cluster. Pods are nonpermanent resources.
+- **ReplicaSets** create and destroy **Pods** dynamically 
 
 A Service is an abstraction which defines a logical set of Pods and a policy by which to access them (sometimes this pattern is called a micro-service). The set of Pods targeted by a Service is usually determined by a selector.
 Es el punto de entrada, siempre es fijo.
@@ -232,7 +218,7 @@ Es el punto de entrada, siempre es fijo.
 Ingress exposes HTTP and HTTPS routes from outside the cluster to services within the cluster. Traffic routing is controlled by rules defined on the Ingress resource.
 
 							Internet
-								|
+							|
 							[Ingress]
 							----|----
 							[Services]
@@ -248,6 +234,9 @@ Kubernetes uses **liveness probes** to know when to restart a container. If a co
 _Para saber si esta levantado el servicio_
 
 ### Configmap and secrets
+
+----
+
 
 
 
