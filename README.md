@@ -1,15 +1,15 @@
 # **ft_services**
 CODAM project Curriculum 2019
 
-**Project type**: System Administration and Networking project.
-**Objective**: Setting up an infrastructure of different services using **Kubernetes**.
+- **Project type**: System Administration and Networking.
+- **Objective**: Setting up an infrastructure of different services using **Kubernetes**.
 
 ----
-## Requeriments
+## Requirements
 
  This proyect is aimed to set up a multi-service cluster. It must meet the following requirements:
 
-- Each service will have to **run in a dedicated container**.
+- Each service will have to _run in a dedicated container_.
 - Each container must bear the same name as the service concerned.
 - For performance reasons, containers have to be build using **Alpine Linux**.
 - Containers will need to have a Dockerfile which is called in the setup.sh
@@ -17,14 +17,14 @@ CODAM project Curriculum 2019
 
 Mandatory set ups:
 - The _Kubernetes web dashboard_.
-- The _Load Balancer_(MetalLB).  It will be the only entry point to your cluster. Load Balancer will have a single ip.
-- A _WordPress website_ listening on port 5050.
-- _phpMyAdmin_, listening on port 5000 and linked with the __MySQL database__ (MariaDB).
-- A container with an _nginx server_ listening on ports 80 and 443.
-- A _FTPS server_ listening on port 21.
-- A _Grafana platform_, listening on port 3000, linked with an _InfluxDB database_.
+- The **Load Balancer(MetalLB)**.  It will be the only entry point to your cluster. Load Balancer will have a single ip.
+- A **WordPress** website listening on port 5050.
+- **phpMyAdmin**, listening on port 5000 and linked with the **MySQL database (MariaDB)**.
+- A container with an **nginx** server listening on ports 80 and 443.
+- A **FTPS** server listening on port 21.
+- A **Grafana** platform, listening on port 3000, linked with an _InfluxDB database_.
 
-### Restriccions
+#### Restriccions
 
 - It is forbidden to take already build images or use services like DockerHub.
 - Usage of Node Port services, Ingress Controller object or kubectl port-forward command is prohibited.
@@ -184,26 +184,28 @@ docker ps
 
 ----
 
-## General info
+## Concepts
 
 ### Namespaces
 Kubernetes supports multiple virtual clusters backed by the same physical cluster. 
 These virtual clusters are called namespaces.
 
-#### When to Use Multiple Namespaces 
+##### When to Use Multiple Namespaces 
 Namespaces are intended for use in environments with many users spread across multiple teams, or projects. 
 For clusters with a few to tens of users, you should not need to create or think about namespaces at all.
 
 
-### POD
+### Pod
 
 - Pods are the smallest deployable units of computing that you can create and manage in Kubernetes.
 - Pod is like a container.
 - Pod is the minimun unit of work.
 - A Pod is a group of one or more containers, with shared storage and network resources, and a specification for how to run the containers.
 
-### DEPLOYMENT
+### Deployment
+
 A Deployment provides declarative updates for Pods and ReplicaSets.
+
 
 ### Services
 
@@ -218,12 +220,12 @@ Es el punto de entrada, siempre es fijo.
 Ingress exposes HTTP and HTTPS routes from outside the cluster to services within the cluster. Traffic routing is controlled by rules defined on the Ingress resource.
 
 							Internet
-							|
+							    |
 							[Ingress]
 							----|----
 							[Services]
 
-### Kubernetes Liveness and Readiness Probes
+### Liveness and Readiness Probes
 
 **Readiness** probes are designed to let Kubernetes know when the app is ready to serve traffic. Kubernetes makes sure the readiness probe passes before allowing a service to send traffic to the pod. If a readiness probe starts to fail, Kubernetes stops sending traffic to the pod until it passes.
 
