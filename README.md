@@ -27,30 +27,51 @@ For Windows and if you are using powershell, be sure to run as Administrator.
 - minikube config: displays a list of all params we can change
 - minikube options:  displays a list of global command-line options (applies to all commands)
 - minikube <"command"> --help
+- minikube ip: show current ip.
 
 ### kubectl
 
-Before start using this commands, be sure minikube is running.
+:warning: Before start using this commands, be sure minikube is running.
 
+To display all (namespaces, pods, etc)
+```
+kubectl get all
+```
 To list the current namespaces in a cluster
 ```
-kubectl get namespace
+kubectl get namespaces
 ```
-To list the current pods:
+List the current pods:
 ```
-kubectl get pod
+kubectl get pods
 ```
+List all pods in ps output format with more information (such as node name):
+```
+kubectl get pods -o wide
+```
+
 To list the current deployments:
 ```
-kubectl get deployment
+kubectl get deployments
 ```
 To list the current services:
 ```
-kubectl get service
+kubectl get services
+```
+To list ingress:
+```
+kubectl get ingress
+```
+To display events with changes
+```
+kubectl get events -w
+```
+To allow to change between namespaces. Without the name, it will list all namespaces available.
+```
+kubens <"namespace's name">
 ```
 
-#### Create Namespace / POD / Deployment / Service
-
+#### Create Namespace / POD / Deployment / Service / Ingress
 
 1. Using command line (for namespace)
 ```
@@ -62,8 +83,12 @@ kubectl create namespace <"namespace's name">
 kubectl apply -f <"file name">
 ```
 
-3. From Dashboard on webpage
+3. From Dashboard on webpage (Except Ingress)
 
+:warning: For Ingress, it's important to allow an addon
+```
+minikube addons enable ingress
+```
 
 #### Delete Namespace / Pod / Deployment / Service
 
@@ -137,19 +162,39 @@ Kubernetes has a intern DNS, for that reason is able to resolve conexion between
 kubectl apply -f <"file name">
 ```
 
+### Run on Windows
 
+Using the docker motor inside the minikube
 
+1. Run in the terminal:
+```
+minikube docker-env
+```
+2. Check what do you need to run
+```
+# To point your shell to minikube's docker-daemon, run:
+# & minikube -p minikube docker-env | Invoke-Expression
+```
+3. Then, run:
+```
+docker ps
+```
 
+#### Mount a volume, set working directory, execute command
+```
+ docker run -it --rm --name my-maven-project -v /c/Users/diani/kuber_practice/Bloque11Aplicacion/aplicacion:/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn clean install
+```
 
 ----
 
-
-
-
 ## Useful links
 
+
+- [Kubernetes overview](https://www.youtube.com/watch?v=7bA0gTroJjw)
 - Kubernetes tutorial (in Spanish) - [Curso de Kubernetes Gratis -  Iñigo Serrano](https://www.youtube.com/playlist?list=PLrb1e2Mp6N_uJSNsV-7SqLFaBdImJsI5x)
 - https://github.com/parismart/ft_services#ft_services
+- [Readness and liveness in Kubernetes](https://medium.com/@AADota/kubernetes-liveness-and-readiness-probes-difference-1b659c369e17)
+
 
 ----
 
@@ -182,8 +227,6 @@ Kubernetes Pods are created and destroyed to match the state of your cluster. Po
 A Service is an abstraction which defines a logical set of Pods and a policy by which to access them (sometimes this pattern is called a micro-service). The set of Pods targeted by a Service is usually determined by a selector.
 Es el punto de entrada, siempre es fijo.
 
-### Selectors
-
 ### Ingress
 
 Ingress exposes HTTP and HTTPS routes from outside the cluster to services within the cluster. Traffic routing is controlled by rules defined on the Ingress resource.
@@ -194,6 +237,17 @@ Ingress exposes HTTP and HTTPS routes from outside the cluster to services withi
 							----|----
 							[Services]
 
+### Kubernetes Liveness and Readiness Probes
+
+**Readiness** probes are designed to let Kubernetes know when the app is ready to serve traffic. Kubernetes makes sure the readiness probe passes before allowing a service to send traffic to the pod. If a readiness probe starts to fail, Kubernetes stops sending traffic to the pod until it passes.
+
+Kubernetes uses **readiness probes** to decide when the container is available for accepting traffic. The readiness probe is used to control which pods are used as the backends for a service. A pod is considered ready when all of its containers are ready. If a pod is not ready, it is removed from service load balancers. For example, if a container loads a large cache at startup and takes minutes to start, you do not want to send requests to this container until it is ready, or the requests will fail—you want to route requests to other pods, which are capable of servicing requests.
+_Una vez levantado el servicio, si esta en disposicion de aceptar o no peticiones._
+
+Kubernetes uses **liveness probes** to know when to restart a container. If a container is unresponsive—perhaps the application is deadlocked due to a multi-threading defect—restarting the container can make the application more available, despite the defect. It certainly beats paging someone in the middle of the night to restart a container.
+_Para saber si esta levantado el servicio_
+
+### Configmap and secrets
 
 
 
@@ -212,13 +266,15 @@ We've got the code, and we containerize it. And, we define it in an object call 
 Then we give the file to K8s on the master, and the master looks at the file and deploys the app on the cluster. 
 
 ### MASTERS
-- Don't run user workloads on Master
-- API server:  It's our front‑end into the master or the control plane. In fact, it's the only master component that we should be talking to. For example, it's the only one with a proper external facing interface. And you know what? Like all good things these days, it exposes a RESTful API, and it consumes JSON. Now how that looks in the real world is, right? We send it our manifest files, which we mentioned already. These declare the state of our app like a record of intent. The master validates it, and it attempts to deploy it on the cluster. Then there's the cluster store. Now if the API serves as the brains of the cluster, then the store is definitely its memory. So the config and the state of the cluster gets persistently stored in here. Right now it's etcd. Yes, there's been talk like forever about there being other options, but right now, etcd is where it's at. It's battle hardened and you know what? In my opinion, it is pretty production ready. Oh, hang on. This is, this is bad of me, actually. Apologies. If you don't know what etcd is, that's fine. So etcd is an open source distributed key value store. It's developed by the guys at CoreOS, and if key value stores aren't your things, it's a NoSQL database, but it's distributed, consistent, and watchable. And when I say consistent, right, I mean, yes, all copies can be written to, what they talk to each other and they work out consistency. But I'm getting sidetracked. Kubernetes uses etcd as the source of truth for the cluster. So it is vital with a capital everything right? No etcd or cluster store? No cluster. It'd be a bit like taking a person and like entirely wiping their memory, alright? They might be pretty to look at and full of potential, but they're not a lot of use right here and now. So make sure you protect this store and you've got a solid backup plan for it. Alright, so what have we got under here? Yes, the controller manager. This is a bit like a controller of controllers, if you will. And I don't know, dare I say a bit of a mini monolith? But I don't want to get hung up on detail like this, because this is the kind of thing that could easily change, especially with something like Kubernetes that's evolving and improving at a rate that only software can. But right now, this component implements a few features and functions that I wouldn't be surprised if at some point in the near future they get split out into separate and even plugable services. But right now, today okay, we've got a bunch of controllers: node controller, endpoints controller, names‑based controller. There's practically a controller for everything. And these guys all sit in a loop and they watch for changes, the aim of the game being to make sure that the current state of the cluster matches our desired state. But like we said, right now they are all managed by the controller manager. Ah! Okay, we've got the scheduler. This is a biggie, okay? It watches for new pods, and it assigns them to workers. And yes, that's the high level, right? But it's doing it a huge disservice, because it's got a ton of things to think about. So things like affinity and anti‑affinity, constraints, resource management. There's loads more, but I think that's probably enough for us. Now then, because the API server is our front end into the master and it's the only component in the master that we really deal directly with, well sometimes we fall into just calling this the master. So when we say things like, I don't know, maybe issue commands to the master or whatever, we actually mean issue commands to the API server. We just mix and much master and API server quite a lot in our lingo. I think the important thing to remember though is no other master components expose an endpoint for us. Just the API server, and by default that does it on port 443. So the master is the brains of Kubernetes. Commands and queries come into the API server component of the master, we can stick authentication on at this point; that's beyond the scope of this course though. We've not covered this yet, but commands come in usually via the kubectl command line utility, but they're formatted as JSON. Then there's a bit of chatter that goes on between all these components here, and depending on what's going on, commands and action items make their way to nodes over here. Speaking of which, nodes.
+- :warning: Don't run user workloads on Master
+- API server:  It's our front‑end into the master or the control plane.
+	Kubernetes API server: main part of Master.
+
 
 ### NODES
 
 #### Kubelet -> Main Kubernetes agent
-- the main Kubernets agent. The kubelet is the node
+- The kubelet is the primary "node agent" that runs on each node.
 - Registers node with cluster
 - Watches apiserver
 - Instantiates pods
@@ -226,6 +282,7 @@ Then we give the file to K8s on the master, and the master looks at the file and
 - Exposes endpoint on :10255
 
 If a pod fails on a node, the kubelet is not resposible for restarting it or finding another node  for it to run. It simply reports the state back to the master. 
+
 
 #### Container Engine -> Docker or rocket
 ##### Does container management:
