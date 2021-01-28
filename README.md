@@ -64,6 +64,8 @@ minikube options
 minikube <"command"> --help
 # Display current ip
 minikube ip
+# List available addons
+minikube addons list
 ```
 
 ### kubectl
@@ -181,6 +183,7 @@ docker ps
 - Kubernetes tutorial (in Spanish) - [Curso de Kubernetes Gratis -  Iñigo Serrano](https://www.youtube.com/playlist?list=PLrb1e2Mp6N_uJSNsV-7SqLFaBdImJsI5x)
 - https://github.com/parismart/ft_services#ft_services
 - [Readness and liveness in Kubernetes](https://medium.com/@AADota/kubernetes-liveness-and-readiness-probes-difference-1b659c369e17)
+- [MetalLB installation](https://metallb.universe.tf/installation/)
 
 ----
 
