@@ -184,6 +184,7 @@ docker ps
 - https://github.com/parismart/ft_services#ft_services
 - [Readness and liveness in Kubernetes](https://medium.com/@AADota/kubernetes-liveness-and-readiness-probes-difference-1b659c369e17)
 - [MetalLB installation](https://metallb.universe.tf/installation/)
+- [MetalLB yaml](https://metallb.universe.tf/configuration/)
 
 ----
 
