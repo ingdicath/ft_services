@@ -13,7 +13,7 @@ CODAM project Curriculum 2019
 - Each container must bear the same name as the service concerned.
 - For performance reasons, containers have to be build using **Alpine Linux**.
 - Containers will need to have a Dockerfile which is called in the setup.sh
-- Build by yourself the images that the project will use. 
+- Build by yourself the images that the project will use.
 
 Mandatory set ups:
 - The _Kubernetes web dashboard_.
@@ -90,6 +90,8 @@ kubectl get ingress
 kubectl get events -w
 # Allow to change between namespaces. Without the name, it will list all namespaces available.
 kubens <"namespace's name">
+# Displays IPs
+kubectl get pod -o wide
 ```
 
 #### Create Namespace / POD / Deployment / Service / Ingress
@@ -176,17 +178,78 @@ docker ps
 ```
 
 ----
+## How to start with this project
+
+1. Start with the data bases MySQL, InfluDX (telegraf)
+2. Wordpress, PHPmyadmin, Grafana
+3. Ngnix, ftps
 
 ## Useful links
 
 - [Kubernetes overview](https://www.youtube.com/watch?v=7bA0gTroJjw)
-- Kubernetes tutorial (in Spanish) - [Curso de Kubernetes Gratis -  Iñigo Serrano](https://www.youtube.com/playlist?list=PLrb1e2Mp6N_uJSNsV-7SqLFaBdImJsI5x)
+- [Kubernetes tutorial (in Spanish) -  Iñigo Serrano](https://www.youtube.com/playlist?list=PLrb1e2Mp6N_uJSNsV-7SqLFaBdImJsI5x)
+- [Kubernetes explained in 15 min](https://www.youtube.com/watch?v=VnvRFRk_51k&amp%3Bindex=1)
 - https://github.com/parismart/ft_services#ft_services
 - [Readness and liveness in Kubernetes](https://medium.com/@AADota/kubernetes-liveness-and-readiness-probes-difference-1b659c369e17)
 - [MetalLB installation](https://metallb.universe.tf/installation/)
+- [MetalLB IP Address Sharing](https://metallb.universe.tf/usage/)
 - [MetalLB yaml](https://metallb.universe.tf/configuration/)
+- [Install brew without sudo](https://stackoverflow.com/questions/35775102/how-to-install-homebrew-packages-locally)
+- [Setup profile](https://superuser.com/questions/187639/zsh-not-hitting-profile)
+- [Adding username in Linux](https://linux.die.net/man/8/adduser)
+- [Understanding how uid and gid work in Docker containers](https://medium.com/@mccode/understanding-how-uid-and-gid-work-in-docker-containers-c37a01d01cf)
+- [Explanation about certificates](https://www.shellhacks.com/create-csr-openssl-without-prompt-non-interactive/)
+- [About OpenSSH authentication - Needed for previous project versions](http://www.manpagez.com/man/1/ssh-keygen/)
+- https://github.com/tishj/ft_services
+- [How To Install Nginx web server on Alpine Linux](https://www.cyberciti.biz/faq/how-to-install-nginx-web-server-on-alpine-linux/)
 
-----
+- [Alpine packages](https://pkgs.alpinelinux.org/packages)
+- [Advantages of --no cache](https://stackoverflow.com/questions/49118579/alpine-dockerfile-advantages-of-no-cache-vs-rm-var-cache-apk/49119046)
+
+### yaml
+- [yaml files examples](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/)
+
+
+### VSFTPD (Very Secure File Transfer Protocol Daemon)
+- [vsftpd.conf(5) - Linux man page](https://linux.die.net/man/5/vsftpd.conf)
+- [vsftpd.conf parameters](http://vsftpd.beasts.org/vsftpd_conf.html)
+- [vsftpd](https://security.appspot.com/vsftpd.html)
+- [Build a FTP Server on GCP VM with vsftpd](https://medium.com/learn-or-die/build-a-ftp-server-on-gcp-vm-with-vsftpd-e140f81da575)
+- [How To Set Up vsftpd](https://www.digitalocean.com/community/tutorials/how-to-set-up-vsftpd-for-a-user-s-directory-on-ubuntu-16-04)
+- [vsftpd.conf reference](https://github.com/epoweripione/docker-vsftpd-alpine/blob/master/vsftpd.conf)
+
+### telegraf
+- [Download telegraf for Alpine](https://github.com/influxdata/telegraf/releases)
+- [Configuring Telegraf](https://docs.influxdata.com/telegraf/v1.15/administration/configuration/)
+- [Configuration github](https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md)
+- [Set Up Telegraf, InfluxDB, & Grafana on Kubernetes](https://blog.gojekengineering.com/diy-set-up-telegraf-influxdb-grafana-on-kubernetes-d55e32f8ce48)
+- [telegraf for Alpine](https://dl-cdn.alpinelinux.org/alpine/edge/community/)
+- [Downloads influxdb, telegraf](https://portal.influxdata.com/downloads/)
+
+### Grafana
+- [Configuration](https://grafana.com/docs/grafana/latest/administration/configuration/)
+- [Dashboards](https://grafana.com/docs/grafana/latest/administration/provisioning/#dashboards)
+- [Using InfluxDB in Grafana](https://grafana.com/docs/grafana/latest/datasources/influxdb/)
+- [Download grafana](https://grafana.com/grafana/download?platform=linux)
+- https://github.com/grafana/grafana/blob/master/packaging/docker/Dockerfile
+
+### 
+- [Set up localhost windows](https://stackoverflow.com/questions/42866013/docker-toolbox-localhost-not-working/45822356#45822356)
+
+### mysql
+- [Expose port](https://kinsta.com/knowledgebase/mysql-port/)
+- [MySQL Port Reference Tables](https://dev.mysql.com/doc/mysql-port-reference/en/mysql-ports-reference-tables.html)
+- Docker windows local ip 192.168.99.100
+
+### Others
+- https://github.com/VictorTennekes/ft_services
+
+### PHP
+- [phpMyAdmin blowfish secret generator](https://phpsolved.com/phpmyadmin-blowfish-secret-generator/?g=[insert_php]echo%20$code;[/insert_php])
+
+### Configmap and secrets
+- (How to create a Secret with base64 encode values)[https://dev4devs.com/2019/10/22/kubernetes-how-to-create-a-secret-with-base64-encode-values-is-it-safe-to-store-confidential-information/]
+-----
 
 ## Concepts
 
@@ -239,7 +302,7 @@ _Una vez levantado el servicio, si esta en disposicion de aceptar o no peticione
 Kubernetes uses **liveness probes** to know when to restart a container. If a container is unresponsive—perhaps the application is deadlocked due to a multi-threading defect—restarting the container can make the application more available, despite the defect. It certainly beats paging someone in the middle of the night to restart a container.
 _Para saber si esta levantado el servicio_
 
-### Configmap and secrets
+
 
 ----
 
@@ -308,3 +371,9 @@ Kubernetes operates in a declarative model. This means we give the API server ma
 - Pods can have multiple containers (advanced use-case)
 - Pod is a ring-fenced (cercado) environment to run containers. Itself doesn't run anything. It can have 1) Network stack, 2) Kernel namespaces, etc,  n containers.
 - All containerss in pod share the pod environment
+
+
+## TIPS
+
+# Fix error: nginx: [emerg] open() "/run/nginx/nginx.pid" failed (2: No such file or directory), running:
+RUN mkdir -p /run/nginx

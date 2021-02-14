@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+      metallb.universe.tf/allow-shared-ip: shared
+  name: ftps
+  labels:
+      app: ftps
+spec:
+  ports:
+  - port: 20
+    targetPort: 20
+    protocol: TCP
+    name: port-20
+  - port: 21
+    targetPort: 21
+    protocol: TCP
+    name: port-21
+  - port: 10000
+    targetPort: 10000
+    protocol: TCP
+    name: port-10000
+  - port: 10001
+    targetPort: 10001
+    protocol: TCP
+    name: port-10001
+  - port: 10002
+    targetPort: 10002   
+    protocol: TCP
+    name: port-10002
+      # CHEQUEAR LOS PUERTOS
+  selector:
+    app: ftps
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ftps
+  labels:
+    app: ftps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ftps
+  template:
+    metadata:
+      labels:
+        app: ftps
+    spec:
+      #serviceAccount: diana // chequear si se pone
+      containers:
+      - name: ftps
+        image: my_ftps
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 20
+        - containerPort: 21
+        - containerPort: 10000
+        - containerPort: 10001
+        - containerPort: 10002
+    # CHEQUEAR LOS PUERTOS
