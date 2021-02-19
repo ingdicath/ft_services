@@ -12,7 +12,7 @@ RUN adduser -D 'grogu' -g mysql
 
 # mysql config
 COPY srcs/my.cnf /etc/
-COPY srcs/start.sh /start.sh
+COPY srcs/start.sh .
 VOLUME /var/lib/mysql
 
 # The default port for the classic MySQL protocol

@@ -1,0 +1,12 @@
+apiVersion: 1
+datasources:
+- name: influxdb
+  type: influxdb
+  access: proxy
+  #CHANGE FOR http://influxdb:8086
+  url: http://192.168.99.100:8086
+  password: telegraf
+  user: telegraf
+  database: telegraf
+  isDefault: true
+  editable: false

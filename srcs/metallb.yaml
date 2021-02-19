@@ -4,12 +4,21 @@ metadata:
   namespace: metallb-system
   name: config
 data:
-  config:
+  config: |
     address-pools:
     - name: default
       protocol: layer2
       addresses:
-      - 192.168.1.240-192.168.1.250
-  # change range above
-	# check addresses range: 192.168.49.50-192.168.49.55?  192.168.99.220-192.168.99.220??
-  # https://discord.com/channels/764049509012602880/764072435276054538/792370831267332117
+      - 192.168.99.100-192.168.99.105
+    - name: ftps_range
+      protocol: layer2
+      addresses:
+      - 192.168.99.101-192.168.99.101
+    - name: wp_range
+      protocol: layer2
+      addresses:
+      - 192.168.99.102-192.168.99.102
+    - name: pma_range
+      protocol: layer2
+      addresses:
+      - 192.168.99.103-192.168.99.103

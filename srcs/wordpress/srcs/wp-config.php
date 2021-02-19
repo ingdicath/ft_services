@@ -23,13 +23,14 @@
 define( 'DB_NAME', 'wordpress' );
 
 /** MySQL database username */
-define( 'DB_USER', 'diana' );
+define( 'DB_USER', 'grogu' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', 'pajarito' );
+define( 'DB_PASSWORD', 'mando' );
 
 /** MySQL hostname */
-define( 'DB_HOST', 'mysql' );
+define( 'DB_HOST', '192.168.99.100' );
+// define( 'DB_HOST', 'mysql' ); // CAMBIAR CON EL KUBERNETESSSSSSSSSSSSSSSSSSSs
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
@@ -55,6 +56,8 @@ define('SECURE_AUTH_SALT', ')-l([A[vN+9H#]D8US3#!Vqc,r=R(+]Zg|pkCL((Go|a#^TB=sKn
 define('LOGGED_IN_SALT',   '>Ral1bZ37([*<85:25)]?+gdQx+D^o6nB?:Du3[T#CjGJ1JZX,5QJy_{ycXXkk#K');
 define('NONCE_SALT',       '7SwH>+LdG(_xd7Z-{-z^m_t-U<m*T>qH%[#t-B(RyOsIC3K~)-)H+Y$`YWb_.Lm*');
 
+define( 'CONCATENATE_SCRIPTS', false );  // CHECK IF IS NECESSARY PUT HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+define( 'SCRIPT_DEBUG', true ); // CHECK IF IS NECESSARY PUT HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 /**#@-*/
 
 /**

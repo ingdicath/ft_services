@@ -217,6 +217,7 @@ docker ps
 - [Build a FTP Server on GCP VM with vsftpd](https://medium.com/learn-or-die/build-a-ftp-server-on-gcp-vm-with-vsftpd-e140f81da575)
 - [How To Set Up vsftpd](https://www.digitalocean.com/community/tutorials/how-to-set-up-vsftpd-for-a-user-s-directory-on-ubuntu-16-04)
 - [vsftpd.conf reference](https://github.com/epoweripione/docker-vsftpd-alpine/blob/master/vsftpd.conf)
+- [FTP over SSL Clients (FTPS)](https://studentclearinghouse.info/ftphelp/knowledge-base/configuring-your-firewall-settings/#ssl)
 
 ### telegraf
 - [Download telegraf for Alpine](https://github.com/influxdata/telegraf/releases)
@@ -232,7 +233,7 @@ docker ps
 - [Using InfluxDB in Grafana](https://grafana.com/docs/grafana/latest/datasources/influxdb/)
 - [Download grafana](https://grafana.com/grafana/download?platform=linux)
 - https://github.com/grafana/grafana/blob/master/packaging/docker/Dockerfile
-
+- https://github.com/grafana/grafana/blob/master/Dockerfile
 ### 
 - [Set up localhost windows](https://stackoverflow.com/questions/42866013/docker-toolbox-localhost-not-working/45822356#45822356)
 
@@ -247,8 +248,11 @@ docker ps
 ### PHP
 - [phpMyAdmin blowfish secret generator](https://phpsolved.com/phpmyadmin-blowfish-secret-generator/?g=[insert_php]echo%20$code;[/insert_php])
 
+### Nginx
+- [How To Configure Nginx to Use Custom Error Pages](https://www.digitalocean.com/community/tutorials/how-to-configure-nginx-to-use-custom-error-pages-on-ubuntu-14-04)
+
 ### Configmap and secrets
-- (How to create a Secret with base64 encode values)[https://dev4devs.com/2019/10/22/kubernetes-how-to-create-a-secret-with-base64-encode-values-is-it-safe-to-store-confidential-information/]
+- [How to create a Secret with base64 encode values](https://dev4devs.com/2019/10/22/kubernetes-how-to-create-a-secret-with-base64-encode-values-is-it-safe-to-store-confidential-information/)
 -----
 
 ## Concepts
@@ -375,5 +379,10 @@ Kubernetes operates in a declarative model. This means we give the API server ma
 
 ## TIPS
 
-# Fix error: nginx: [emerg] open() "/run/nginx/nginx.pid" failed (2: No such file or directory), running:
+### Fix error: nginx: [emerg] open() "/run/nginx/nginx.pid" failed (2: No such file or directory), running:
 RUN mkdir -p /run/nginx
+
+### To check to see what was running on port
+```
+netstat -tulpn
+```

@@ -89,3 +89,18 @@ echo -e "$GREEN Deployments completed 👍$RESET"
 
 # Display dashboard
 # minikube dashboard
+
+
+# How to login:
+# phpmyadmin: mysql:mysql
+# Worpress: :
+# Grafana: admin:admin
+
+
+
+
+# http://192.168.99.202:5050">Wordpress
+# http://192.168.99.203:5000">PhpMyadmin
+# http://192.168.99.100:3000">Grafana
+# 192.168.99.201 ftps
+# 192.168.99.200 ngnix

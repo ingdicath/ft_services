@@ -27,7 +27,7 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 
 # Nginx config
 COPY srcs/nginx.conf /etc/nginx/
-COPY srcs/start.sh ./
+COPY srcs/start.sh .
 RUN chmod +x start.sh
 
 EXPOSE 80 443
@@ -41,3 +41,7 @@ CMD	sh start.sh
 
 
 # chequear lugar correcto para poner el comando mkdir -p /run/nginx
+
+#debugger command
+#RUN apk add vim
+#CMD tail -f /dev/null
