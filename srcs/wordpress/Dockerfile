@@ -29,7 +29,7 @@ RUN wget -nv https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cl
 RUN chmod +x wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/wp
 
-# Setup max size for upload files
+# Setup max size for upload files (optional)
 RUN cd /etc/php7/ && sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 32M/g' php.ini && \
 	sed -i 's/post_max_size = 8M/post_max_size = 32M/g' php.ini
 

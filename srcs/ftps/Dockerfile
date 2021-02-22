@@ -27,4 +27,4 @@ COPY srcs/start.sh .
 # Port 3000: pasive mode data transfer.
 EXPOSE 20 21 30020-30021
 
-CMD sh ./start.sh
+CMD sh start.sh

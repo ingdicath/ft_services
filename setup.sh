@@ -46,8 +46,8 @@ echo -e "$GREEN Prior minikube deleted 👍$RESET"
 
 # Start the cluster using the docker driver
 echo -e "$PURPLE Creating minikube instance..🐇..🐇..🐇..$RESET" 
-# minikube start --driver=docker
-# minikube start --vm-driver=virtualbox
+# minikube start --driver=virtualbox
+# minikube start --driver=virtualbox --cpus=2 --memory 3000
 echo -e "$GREEN Minikube instance creation completed 😃$RESET"
 
 # Install addons
@@ -58,7 +58,12 @@ echo -e "$PURPLE Installing minikube addons..⏳..⏳..⏳..$RESET"
 echo -e "$GREEN Minikube addons installed 😃 $RESET"
 
 # Set up environment to use minikube’s Docker daemon
+#for linux or mac
 # eval $(minikube docker-env)
+#for windows
+# minikube docker-env
+# minikube -p minikube docker-env | Invoke-Expression
+
 
 # Build docker images
 echo -e "$PURPLE Starting build docker images..🐷..🐷..🐷..$RESET"
@@ -73,8 +78,6 @@ echo -e "$GREEN Build docker images completed 😃$RESET"
 
 # Deployments
 echo -e "$PURPLE Starting Deployments 🐖..🐖..🐖.$RESET"
-# kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/namespace.yaml
-# kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/metallb.yaml
 # kubectl apply -f srcs/metallb.yaml
 # kubectl apply -f srcs/nginx/srcs/nginx.yaml
 # kubectl apply -f srcs/wordpress/srcs/wordpress.yaml
