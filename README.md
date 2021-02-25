@@ -191,6 +191,7 @@ docker ps
 - [Kubernetes explained in 15 min](https://www.youtube.com/watch?v=VnvRFRk_51k&amp%3Bindex=1)
 - https://github.com/parismart/ft_services#ft_services
 - [Readness and liveness in Kubernetes](https://medium.com/@AADota/kubernetes-liveness-and-readiness-probes-difference-1b659c369e17)
+- [MetalLB installation no cloud](https://medium.com/faun/metallb-configuration-in-minikube-to-enable-kubernetes-service-of-type-loadbalancer-9559739787df)
 - [MetalLB installation](https://metallb.universe.tf/installation/)
 - [MetalLB IP Address Sharing](https://metallb.universe.tf/usage/)
 - [MetalLB yaml](https://metallb.universe.tf/configuration/)
@@ -241,6 +242,9 @@ docker ps
 - [Expose port](https://kinsta.com/knowledgebase/mysql-port/)
 - [MySQL Port Reference Tables](https://dev.mysql.com/doc/mysql-port-reference/en/mysql-ports-reference-tables.html)
 - Docker windows local ip 192.168.99.100
+
+### wordpress
+- [Editing wp-config-php](https://wordpress.org/support/article/editing-wp-config-php/)
 
 ### Others
 - https://github.com/VictorTennekes/ft_services

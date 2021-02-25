@@ -29,8 +29,13 @@ define( 'DB_USER', 'grogu' );
 define( 'DB_PASSWORD', 'mando' );
 
 /** MySQL hostname */
-define( 'DB_HOST', '192.168.99.100' );
-// define( 'DB_HOST', 'mysql' ); // CAMBIAR CON EL KUBERNETESSSSSSSSSSSSSSSSSSSs
+// define( 'DB_HOST', '192.168.99.100' ); // localhost ip
+define( 'DB_HOST', 'mysql' ); // service host name
+
+define( 'WP_HOME', 'http://192.168.99.36:5050' );
+
+define( 'WP_SITEURL', 'http://192.168.99.36:5050' );
+
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
@@ -55,10 +60,6 @@ define('AUTH_SALT',        'h;~AyOJ+9(p]F9/n]=xV|E$yK-{GXu|1Ka&!Qh~91Z$bHc]1/MfN
 define('SECURE_AUTH_SALT', ')-l([A[vN+9H#]D8US3#!Vqc,r=R(+]Zg|pkCL((Go|a#^TB=sKn_9vPp3Y5)=f$');
 define('LOGGED_IN_SALT',   '>Ral1bZ37([*<85:25)]?+gdQx+D^o6nB?:Du3[T#CjGJ1JZX,5QJy_{ycXXkk#K');
 define('NONCE_SALT',       '7SwH>+LdG(_xd7Z-{-z^m_t-U<m*T>qH%[#t-B(RyOsIC3K~)-)H+Y$`YWb_.Lm*');
-
-define( 'CONCATENATE_SCRIPTS', false );  // CHECK IF IS NECESSARY PUT HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-define( 'SCRIPT_DEBUG', true ); // CHECK IF IS NECESSARY PUT HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-/**#@-*/
 
 /**
  * WordPress Database Table prefix.

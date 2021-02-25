@@ -1,5 +1,5 @@
 # Using official alpine image as a parent image
-FROM alpine:latest
+FROM alpine:3.12
 
 # Getting the updates for alpine
 RUN apk update
@@ -20,11 +20,10 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 
 # vsftpd config
 COPY srcs/vsftpd.conf /etc/vsftpd/
-# RUN sed -i 's,\r,,;s, *$,,' /etc/vsftpd/vsftpd.conf
 COPY srcs/start.sh .
 
 # Port 20: active mode data transfer. Port 21: explicit FTPS control connections. 
 # Port 3000: pasive mode data transfer.
-EXPOSE 20 21 30020-30021
+EXPOSE 20 21 30000
 
 CMD sh start.sh

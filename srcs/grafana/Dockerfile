@@ -1,6 +1,5 @@
 # Using official alpine image as a parent image
-FROM alpine:latest
-
+FROM alpine:3.12
 # Getting the updates for alpine
 RUN apk update
 

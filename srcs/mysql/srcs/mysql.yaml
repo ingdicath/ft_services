@@ -51,7 +51,7 @@ spec:
         - containerPort: 3306
         env:
         - name: DB_NAME
-          value: mandalorian
+          value: wordpress
         - name: MYSQL_USER
           value: grogu
         - name: MYSQL_USERPASS

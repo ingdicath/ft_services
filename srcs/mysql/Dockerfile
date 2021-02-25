@@ -1,5 +1,5 @@
 # Using official alpine image as a parent image
-FROM alpine:latest
+FROM alpine:3.12
 
 RUN echo $HTTP_PROXY && echo $http_proxy && unset HTTP_PROXY && unset http_proxy
 

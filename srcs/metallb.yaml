@@ -9,16 +9,4 @@ data:
     - name: default
       protocol: layer2
       addresses:
-      - 192.168.99.100-192.168.99.105
-    - name: ftps_range
-      protocol: layer2
-      addresses:
-      - 192.168.99.101-192.168.99.101
-    - name: wp_range
-      protocol: layer2
-      addresses:
-      - 192.168.99.102-192.168.99.102
-    - name: pma_range
-      protocol: layer2
-      addresses:
-      - 192.168.99.103-192.168.99.103
+      - 192.168.99.36-192.168.99.36

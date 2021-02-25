@@ -1,15 +1,16 @@
 # Using official alpine image as a parent image
-FROM alpine:latest
+FROM alpine:3.12
 
 # Getting the updates for alpine
 RUN apk update
 
-# Adding new packages
-RUN apk add --no-cache php7 php7-fpm php7-mysqli php7-mbstring php7-session php7-json \
+# Adding new packages, php7-iconv php7-xml is required for version 5.1.0
+RUN apk add --no-cache php7 php7-fpm php7-mysqli php7-mbstring php7-session php7-json php7-iconv php7-xml \
 	nginx wget
 
 # Updating phpmyadmin version
-ENV PMA_VERSION 5.0.4
+# ENV PMA_VERSION 5.0.4
+ENV PMA_VERSION 5.1.0
 
 # Creating a folder for the nginx.pid file & add a 'www' user for nginx
 RUN mkdir -p /var/run/nginx

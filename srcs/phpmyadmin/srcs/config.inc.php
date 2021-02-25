@@ -18,17 +18,16 @@ $cfg['blowfish_secret'] = 'JFxJfZKj4A=mqxs}O:l1WnlDRo[JkB;W'; /* YOU MUST FILL I
 /**
  * Servers configuration
  */
-$i = 0;
+$i = 1;
 
 /**
  * First server
  */
-$i++;
 /* Authentication type */
 $cfg['Servers'][$i]['auth_type'] = 'cookie';
 /* Server parameters */
-$cfg['Servers'][$i]['host'] = '192.168.99.100';
-// $cfg['Servers'][$i]['host'] = 'mysql'; //// CHECK CONFIGURAR DESPUESSSSSSS DEL KUBERNETES
+// $cfg['Servers'][$i]['host'] = '192.168.99.100';
+$cfg['Servers'][$i]['host'] = 'mysql';
 $cfg['Servers'][$i]['compress'] = false;
 $cfg['Servers'][$i]['AllowNoPassword'] = true;
 
@@ -63,7 +62,7 @@ $cfg['Servers'][$i]['savedsearches'] = 'pma__savedsearches';
 $cfg['Servers'][$i]['central_columns'] = 'pma__central_columns';
 $cfg['Servers'][$i]['designer_settings'] = 'pma__designer_settings';
 $cfg['Servers'][$i]['export_templates'] = 'pma__export_templates';
-
+$cfg['ZeroConf'] = false;
 
 /**
  * Directories for saving/loading files from server
@@ -71,6 +70,3 @@ $cfg['Servers'][$i]['export_templates'] = 'pma__export_templates';
 $cfg['UploadDir'] = '';
 $cfg['SaveDir'] = '';
 $cfg['TempDir'] = 'tmp';
-
-// $cfg['PmaAbsoluteUri'] = '192.168.99.203:5000'; //// CHECK IF IS IT NECESSARY SETUP DESPUESSSSSSS DEL KUBERNETES
-// $cfg['PmaAbsoluteUri'] = '${PHPSVC_IP}:5000';
