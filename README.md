@@ -90,8 +90,10 @@ kubectl get ingress
 kubectl get events -w
 # Allow to change between namespaces. Without the name, it will list all namespaces available.
 kubens <"namespace's name">
-# Displays IPs
+# Display IPs
 kubectl get pod -o wide
+# Display log to see activity and if there are errors
+kubectl logs -f pod/telegraf-596d6fbbf8-gg6s9
 ```
 
 #### Create Namespace / POD / Deployment / Service / Ingress
@@ -390,3 +392,10 @@ RUN mkdir -p /run/nginx
 ```
 netstat -tulpn
 ```
+
+
+#debugger command
+#RUN apk add vim
+#CMD tail -f /dev/null
+
+ 

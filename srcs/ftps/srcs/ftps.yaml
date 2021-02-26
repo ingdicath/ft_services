@@ -47,7 +47,4 @@ spec:
         ports:
         - containerPort: 20
         - containerPort: 21
-        - containerPort: 10000
-        - containerPort: 10001
-        - containerPort: 10002
-    # CHEQUEAR LOS PUERTOS
+        - containerPort: 30000

@@ -9,7 +9,6 @@ RUN apk add --no-cache php7 php7-fpm php7-mysqli php7-mbstring php7-session php7
 	nginx wget
 
 # Updating phpmyadmin version
-# ENV PMA_VERSION 5.0.4
 ENV PMA_VERSION 5.1.0
 
 # Creating a folder for the nginx.pid file & add a 'www' user for nginx

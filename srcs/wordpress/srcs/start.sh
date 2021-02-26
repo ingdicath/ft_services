@@ -2,7 +2,7 @@
 cd /www/
 
 wp db create
-wp core install --url=wordpress/ --path=/www --title=Mandalorian --admin_user=grogu --admin_password=mando --admin_email=dsalaman@student.codam.nl --skip-email
+wp core install --url=wordpress/ --path=/www --title=Mandalorian --admin_user=grogu --admin_password=mando --admin_email=grogu@mandalorian.com --skip-email
 wp option update blogdescription "This is the way"
 wp user create Aang editor@avatar.com --role=editor --user_pass=editor
 wp user create Katara author@avatar.com --role=author --user_pass=author

@@ -34,14 +34,3 @@ EXPOSE 80 443
 
 # Start program
 CMD	sh start.sh
-
-# CHEQUEAR SI TOCA CREAR UN USUARIO Y UN GRUPO NUEVO (antes ssh)
-# RUN adduser -D diana -h \
-#	echo "diana:pajarito" | chpasswd
-
-
-# chequear lugar correcto para poner el comando mkdir -p /run/nginx
-
-#debugger command
-#RUN apk add vim
-#CMD tail -f /dev/null

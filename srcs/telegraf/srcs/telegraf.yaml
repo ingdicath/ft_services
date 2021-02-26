@@ -19,6 +19,14 @@ spec:
       - name: telegraf
         image: my_telegraf
         imagePullPolicy: Never
+        env:
+          - name: INFLUXDB_USER
+            value: grogu            
+          - name: INFLUXDB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: telegraf-secret
+                key: influxdb_userpass
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -30,9 +38,9 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: telegraf-role
-rules:
+rules: 
 - apiGroups: ["", "extensions", "apps"]
-  resources: ["daemonsets", "deployments", "endpoints", "ingresses", "nodes", "persistentvolumes", "persistentvolumeclaims", "pods", "services", "statefulsets"]
+  resources: ["daemonsets", "deployments", "endpoints", "ingresses", "nodes", "nodes/proxy","persistentvolumes", "persistentvolumeclaims", "pods", "services", "statefulsets"]
   verbs: ["get", "watch", "list"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
