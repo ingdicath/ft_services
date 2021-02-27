@@ -23,10 +23,10 @@ echo -e "$GREEN Prior minikube deleted 👍$RESET"
 # Start the cluster using the docker driver
 echo -e "$PURPLE Creating minikube instance..🐇..🐇..🐇..$RESET" 
 # ---- for mac -----
-# minikube start --driver=virtualbox
+minikube start --driver=virtualbox
 
 # ---- for windows 10 Home -----
-minikube start --driver=virtualbox --cpus=2 --memory 3000 --no-vtx-check
+# minikube start --driver=virtualbox --cpus=2 --memory 3000 --no-vtx-check
 echo -e "$GREEN Minikube instance creation completed 😃$RESET"
 
 # ********** INSTALL ADDONS **********
@@ -49,47 +49,62 @@ eval $(minikube docker-env)
 
 
 # ---------------------------------------------------------	#
-# 					BUILDING DOCKER IMAGES					#
+# 					BUILDING METALLLB 						#
 # -----------------------------------------	---------------	#
-
-echo -e "$PURPLE Starting build docker images..🐷..🐷..🐷..$RESET"
-docker build -t my_nginx srcs/nginx
-docker build -t my_mysql srcs/mysql
-docker build -t my_wordpress srcs/wordpress
-docker build -t my_phpmyadmin srcs/phpmyadmin
-docker build -t my_ftps srcs/ftps
-docker build -t my_influxdb srcs/influxdb
-docker build -t my_telegraf srcs/telegraf
-docker build -t my_grafana srcs/grafana
-echo -e "$GREEN Build docker images completed 😃$RESET"
-
-
-# ---------------------------------------------------------	#
-# 					BUILDING K8S DEPLOYMENTS				#
-# -----------------------------------------	---------------	#
-
-echo -e "$PURPLE Starting Deployments & secrets 🐖..🐖..🐖.$RESET"
-kubectl apply -f srcs/secrets.yaml
-kubectl apply -f srcs/metallb.yaml
-kubectl apply -f srcs/mysql/srcs/mysql.yaml
-kubectl apply -f srcs/nginx/srcs/nginx.yaml
-kubectl apply -f srcs/influxdb/srcs/influxdb.yaml
-kubectl apply -f srcs/telegraf/srcs/telegraf.yaml
-kubectl apply -f srcs/ftps/srcs/ftps.yaml
-kubectl apply -f srcs/grafana/srcs/grafana.yaml
-kubectl apply -f srcs/wordpress/srcs/wordpress.yaml
-kubectl apply -f srcs/phpmyadmin/srcs/phpmyadmin.yaml
-echo -e "$GREEN Deployments completed 👍$RESET"
-
-# ********** SET UP METALLB SECRET **********
+echo -e "$PURPLE Setting up METALLLB and secrets..🐖..🐖..🐖..$RESET"
 ## On first install only
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+kubectl apply -f srcs/metallb.yaml
+kubectl apply -f srcs/secrets.yaml
+
+# ---------------------------------------------------------	#
+# 					SERVICES DEPLOYMENTS					#
+# -----------------------------------------	---------------	#
+
+# ************************* NGINX ***************************
+echo -e "$PURPLE Setting up NGINX..🐷..🐷..🐷..$RESET"
+docker build -t my_nginx srcs/nginx
+kubectl apply -f srcs/nginx/srcs/nginx.yaml
+
+# ************************* MYSQL ***************************
+echo -e "$PURPLE Setting up MYSQL..🐷..🐷..🐷..$RESET"
+docker build -t my_mysql srcs/mysql
+kubectl apply -f srcs/mysql/srcs/mysql.yaml
+
+# ********************** PHPMYADMIN *************************
+echo -e "$PURPLE Setting up PHPMYADMIN..🐷..🐷..🐷..$RESET"
+docker build -t my_phpmyadmin srcs/phpmyadmin
+kubectl apply -f srcs/phpmyadmin/srcs/phpmyadmin.yaml
+
+# ********************** INFLUXDB *************************
+echo -e "$PURPLE Setting up INFLUXDB & TELEGRAF..🐷..🐷..🐷..$RESET"
+docker build -t my_influxdb srcs/influxdb
+kubectl apply -f srcs/influxdb/srcs/influxdb.yaml
+docker build -t my_telegraf srcs/telegraf
+kubectl apply -f srcs/telegraf/srcs/telegraf.yaml
+
+# ********************** WORDPRESS *************************
+echo -e "$PURPLE Setting up WORDPRESS..🐷..🐷..🐷..$RESET"
+docker build -t my_wordpress srcs/wordpress
+kubectl apply -f srcs/wordpress/srcs/wordpress.yaml
+
+# ********************** GRAFANA *************************
+echo -e "$PURPLE Setting up GRAFANA..🐷..🐷..🐷..$RESET"
+docker build -t my_grafana srcs/grafana
+kubectl apply -f srcs/grafana/srcs/grafana.yaml
+
+# ************************* FTPS ****************************
+echo -e "$PURPLE Setting up FTPS..🐷..🐷..🐷..$RESET"
+docker build -t my_ftps srcs/ftps
+kubectl apply -f srcs/ftps/srcs/ftps.yaml
+
+echo -e "$GREEN Deployments completed 👍$RESET"
 
 # ---------------------------------------------------------	#
 # 						DISPLAY DASHBOARD					#
 # ---------------------------------------------------------	#
 
-echo -e "$PURPLE Starting Dashboard 🐖..🐖..🐖.$RESET"
+echo -e "$PURPLE Starting Dashboard 😃..😃..😃.$RESET"
 minikube dashboard
 
 # ---------------------------------------------------------	#
