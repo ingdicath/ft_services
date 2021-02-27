@@ -62,3 +62,7 @@ echo -e "$BLUE Creating a link in goinfre for Docker... $RESET"
 # rm -rf ~/Library/Containers/com.docker.docker
 # mkdir -p ~/goinfre/docker
 # ln -s ~/goinfre/docker ~/Library/Containers/com.docker.docker
+
+# ********** TEST FTPS WITHOUT FILEZILLA  **********
+
+# brew install lftp

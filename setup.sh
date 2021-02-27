@@ -47,7 +47,6 @@ eval $(minikube docker-env)
 # minikube docker-env
 # minikube -p minikube docker-env | Invoke-Expression
 
-
 # ---------------------------------------------------------	#
 # 					BUILDING METALLLB 						#
 # -----------------------------------------	---------------	#
@@ -56,6 +55,7 @@ echo -e "$PURPLE Setting up METALLLB and secrets..🐖..🐖..🐖..$RESET"
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 kubectl apply -f srcs/metallb.yaml
 kubectl apply -f srcs/secrets.yaml
+
 
 # ---------------------------------------------------------	#
 # 					SERVICES DEPLOYMENTS					#
@@ -99,6 +99,7 @@ docker build -t my_ftps srcs/ftps
 kubectl apply -f srcs/ftps/srcs/ftps.yaml
 
 echo -e "$GREEN Deployments completed 👍$RESET"
+
 
 # ---------------------------------------------------------	#
 # 						DISPLAY DASHBOARD					#
