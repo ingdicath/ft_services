@@ -71,16 +71,19 @@ echo -e "$GREEN Build docker images completed 😃$RESET"
 echo -e "$PURPLE Starting Deployments & secrets 🐖..🐖..🐖.$RESET"
 kubectl apply -f srcs/secrets.yaml
 kubectl apply -f srcs/metallb.yaml
-kubectl apply -f srcs/nginx/srcs/nginx.yaml
 kubectl apply -f srcs/mysql/srcs/mysql.yaml
-kubectl apply -f srcs/wordpress/srcs/wordpress.yaml
-kubectl apply -f srcs/phpmyadmin/srcs/phpmyadmin.yaml
-kubectl apply -f srcs/ftps/srcs/ftps.yaml
+kubectl apply -f srcs/nginx/srcs/nginx.yaml
 kubectl apply -f srcs/influxdb/srcs/influxdb.yaml
 kubectl apply -f srcs/telegraf/srcs/telegraf.yaml
+kubectl apply -f srcs/ftps/srcs/ftps.yaml
 kubectl apply -f srcs/grafana/srcs/grafana.yaml
+kubectl apply -f srcs/wordpress/srcs/wordpress.yaml
+kubectl apply -f srcs/phpmyadmin/srcs/phpmyadmin.yaml
 echo -e "$GREEN Deployments completed 👍$RESET"
 
+# ********** SET UP METALLB SECRET **********
+## On first install only
+kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 
 # ---------------------------------------------------------	#
 # 						DISPLAY DASHBOARD					#
@@ -88,12 +91,6 @@ echo -e "$GREEN Deployments completed 👍$RESET"
 
 echo -e "$PURPLE Starting Dashboard 🐖..🐖..🐖.$RESET"
 minikube dashboard
-
-
-# ********** SET UP METALLB SECRET **********
-## On first install only
-# kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
-
 
 # ---------------------------------------------------------	#
 # 						HOW TO LOGIN 						#
