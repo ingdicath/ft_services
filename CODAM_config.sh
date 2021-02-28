@@ -8,6 +8,10 @@ PURPLE='\033[0;35m'
 CYAN='\033[1;36m'
 WHITE='\033[0;37m'
 
+# ---------------------------------------------------------	#
+# 					PRELIMINARY CHECKS 						#
+# -----------------------------------------	---------------	#
+
 # ********** CHECK FOR DOCKER DESKTOP & VM  **********
 
 # In Manage Software Center, install VirtualBoxfrom and Docker icons
@@ -50,19 +54,63 @@ else
 	echo "minikube is already installed"
 fi
 
-# rm -rf ~/.minikube
-# mkdir -p ~/goinfre/.minikube
-# ln -s ~/goinfre/.minikube ~/.minikube
-# # export MINIKUBE_HOME=/Volumes/Storage/goinfre/<INTRANAME>/.minikube
+echo -e "\n$BLUE Creating a link in goinfre for minikube... $RESET"
+rm -rf ~/.minikube
+mkdir -p ~/goinfre/.minikube
+ln -s ~/goinfre/.minikube ~/.minikube
 
 
 # ********** CHECK DOCKER  **********
 
 echo -e "$BLUE Creating a link in goinfre for Docker... $RESET"
-# rm -rf ~/Library/Containers/com.docker.docker
-# mkdir -p ~/goinfre/docker
-# ln -s ~/goinfre/docker ~/Library/Containers/com.docker.docker
+rm -rf ~/Library/Containers/com.docker.docker
+mkdir -p ~/goinfre/docker
+ln -s ~/goinfre/docker ~/Library/Containers/com.docker.docker
 
 # ********** TEST FTPS WITHOUT FILEZILLA  **********
 
+# ----- Install lftp ----
 # brew install lftp
+
+# ------ Run lftp ----
+# 1. Go to your file location /Users/<INTRANAME>/Downloads
+
+# 2. Type: 
+# lftp ftp://grogu@192.168.99.36 -e "set ssl:verify-certificate false"
+
+# 3. Type your password
+# password: <type your password>
+
+# 4. use 'put' command for to transfer your files
+# lftp grogu@192.168.99.36 ~> put <your file>
+
+# 5. use 'ls' command to list your transfered files
+# lftp grogu@192.168.99.36 ~> ls
+
+
+# ---------------------------------------------------------	#
+# 							CLEANING 						#
+# -----------------------------------------	---------------	#
+
+# echo -e "\n$BLUE Starting Cleaning\n$RESET"
+
+# # ********** REMOVING K8S OBJECTS **********
+
+# echo -e "$PURPLE Deleting k8s deployments...$RESET"
+# kubectl delete -f srcs/secrets.yaml
+# kubectl delete -f srcs/metallb.yaml
+# kubectl delete -f srcs/nginx/srcs/nginx.yaml
+# kubectl delete -f srcs/wordpress/srcs/wordpress.yaml
+# kubectl delete -f srcs/mysql/srcs/mysql.yaml
+# kubectl delete -f srcs/phpmyadmin/srcs/phpmyadmin.yaml
+# kubectl delete -f srcs/grafana/srcs/grafana.yaml
+# kubectl delete -f srcs/influxdb/srcs/influxdb.yaml
+# kubectl delete -f srcs/telegraf/srcs/telegraf.yaml
+
+# # ********** REMOVING DOCKER PROPERTIES  **********
+
+# echo -e "\n$PURPLE Deleting docker images & containers...$RESET"
+# docker container prune -f
+# docker image prune -a --force
+
+# echo -e "\n$GREEN Cleaning completed 👍$RESET"
