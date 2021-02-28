@@ -1,8 +1,6 @@
 # Using official alpine image as a parent image
 FROM alpine:3.12
 
-RUN echo $HTTP_PROXY && echo $http_proxy && unset HTTP_PROXY && unset http_proxy
-
 # Getting the updates for alpine
 RUN apk update
 
