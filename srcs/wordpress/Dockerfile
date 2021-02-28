@@ -13,8 +13,7 @@ RUN apk add --no-cache wget \
 RUN mkdir -p /var/run/nginx
 RUN adduser -D -g 'www' www
 RUN mkdir /www && chmod +x /www
-RUN chown -R www:www /var/lib/nginx && \
-	chown -R www:www /www
+RUN chown -R www:www /var/lib/nginx
 
 # Installing wordpress
 RUN wget -nv https://wordpress.org/latest.tar.gz
@@ -32,6 +31,9 @@ RUN mv wp-cli.phar /usr/local/bin/wp
 # Setup max size for upload files (optional)
 RUN cd /etc/php7/ && sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 32M/g' php.ini && \
 	sed -i 's/post_max_size = 8M/post_max_size = 32M/g' php.ini
+
+# Giving rights to wordpress folders
+RUN chown -R www:www /www
 
 #Copying the nginx configuration and setup start.sh file
 COPY srcs/nginx.conf /etc/nginx/
