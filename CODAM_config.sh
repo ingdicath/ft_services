@@ -19,14 +19,14 @@ WHITE='\033[0;37m'
 
 # ********** CHECK HOMEBREW **********
 
-echo -e "$BLUE Checking for Homebrew version... $RESET"
+echo -e "\n$BLUE Checking for Homebrew version... $RESET"
 command -v brew
 if [ $? == 1 ]; then
 	echo "I require Homebrew but it's not installed. Install and restart the terminal"
 	echo "Aborting"
 	exit 1
 else
-	echo "Brew is already installed"
+	echo "Brew is already installed\n"
 fi
 # In case is not installed, follow this link (brew without sudo)
 # https://stackoverflow.com/questions/35775102/how-to-install-homebrew-packages-locally
@@ -34,39 +34,39 @@ fi
 
 # ********** CHECK KUBECTL **********
 
-echo -e "$BLUE Checking for kubectl version... $RESET"
+echo -e "\n$BLUE Checking for kubectl version... $RESET"
 command -v kubectl
 if [ $? == 1 ]; then
 	echo "I require kubectl but it's not installed. Installing..."
 	brew install kubectl
 else
-	echo "kubectl is already installed"
+	echo "kubectl is already installed\n"
 fi
 
 # ********** CHECK MINIKUBE **********
 
-echo -e "$BLUE Creating a link in goinfre for Minikube... $RESET"
+echo -e "\n$BLUE Creating a link in goinfre for Minikube... $RESET"
 command -v minikube
 if [ $? == 1 ]; then
-	echo "I require minikube but it's not installed. Installing.."
+	echo "I require minikube but it's not installed. Installing..\n"
 	brew install minikube
 else
-	echo "minikube is already installed"
+	echo "minikube is already installed\n"
 fi
 
 echo -e "\n$BLUE Creating a link in goinfre for minikube... $RESET"
 rm -rf ~/.minikube
 mkdir -p ~/goinfre/.minikube
 ln -s ~/goinfre/.minikube ~/.minikube
-
+echo -e "$GREEN minikube linking completed 👍\n$RESET"
 
 # ********** CHECK DOCKER  **********
 
-echo -e "$BLUE Creating a link in goinfre for Docker... $RESET"
+echo -e "\n$BLUE Creating a link in goinfre for Docker... $RESET"
 rm -rf ~/Library/Containers/com.docker.docker
 mkdir -p ~/goinfre/docker
 ln -s ~/goinfre/docker ~/Library/Containers/com.docker.docker
-
+echo -e "$GREEN docker linking completed 👍\n$RESET"
 # ********** TEST FTPS WITHOUT FILEZILLA  **********
 
 # ----- Install lftp ----
