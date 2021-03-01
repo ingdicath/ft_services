@@ -43,8 +43,32 @@ Mandatory set ups:
 
 ## Outputs
 
-VirtualBox
-![](https://github.com/ingdicath/images_md/blob/main/VM_minikube.png)
+- VirtualBox
+<p align="center"><img src="https://github.com/ingdicath/images_md/blob/main/VM_minikube.png" width="60%" height="60%"></p>
 
-<img src="https://github.com/ingdicath/images_md/blob/main/VM_minikube.png" style="width:800px;height:300px;">
+- Dashboard 
+<p align="center"><img src="https://github.com/ingdicath/images_md/blob/main/deployments.png" width="60%" height="60%"></p>
+<p align="center"><img src="https://github.com/ingdicath/images_md/blob/main/dash_services.png" width="60%" height="60%"></p>
+
+- Nginx
+<p align="center"><img src="https://github.com/ingdicath/images_md/blob/main/nginx.png" width="60%" height="60%"></p>
+
+- Wordpress
+<p align="center"><img src="https://github.com/ingdicath/images_md/blob/main/wordpress.png" width="60%" height="60%"></p>
+
+- Phpmyadmin
+<p align="center"><img src="https://github.com/ingdicath/images_md/blob/main/phpmyadmin.png" width="60%" height="60%"></p>
+
+- Grafana
+<p align="center"><img src="https://github.com/ingdicath/images_md/blob/main/grafana.png" width="60%" height="60%"></p>
+
+- Filezilla
+<p align="center"><img src="https://github.com/ingdicath/images_md/blob/main/filezilla.png" width="60%" height="60%"></p>
+
+- Certificate - Filezila
+<p align="center"><img src="https://github.com/ingdicath/images_md/blob/main/ft_services_certificate.png" width="50%" height="50%"></p>
+
+
+
+
 
