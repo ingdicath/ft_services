@@ -191,7 +191,6 @@ docker ps
 - [Kubernetes overview](https://www.youtube.com/watch?v=7bA0gTroJjw)
 - [Kubernetes tutorial (in Spanish) -  Iñigo Serrano](https://www.youtube.com/playlist?list=PLrb1e2Mp6N_uJSNsV-7SqLFaBdImJsI5x)
 - [Kubernetes explained in 15 min](https://www.youtube.com/watch?v=VnvRFRk_51k&amp%3Bindex=1)
-- https://github.com/parismart/ft_services#ft_services
 - [Readness and liveness in Kubernetes](https://medium.com/@AADota/kubernetes-liveness-and-readiness-probes-difference-1b659c369e17)
 - [MetalLB installation no cloud](https://medium.com/faun/metallb-configuration-in-minikube-to-enable-kubernetes-service-of-type-loadbalancer-9559739787df)
 - [MetalLB installation](https://metallb.universe.tf/installation/)
@@ -203,7 +202,6 @@ docker ps
 - [Understanding how uid and gid work in Docker containers](https://medium.com/@mccode/understanding-how-uid-and-gid-work-in-docker-containers-c37a01d01cf)
 - [Explanation about certificates](https://www.shellhacks.com/create-csr-openssl-without-prompt-non-interactive/)
 - [About OpenSSH authentication - Needed for previous project versions](http://www.manpagez.com/man/1/ssh-keygen/)
-- https://github.com/tishj/ft_services
 - [How To Install Nginx web server on Alpine Linux](https://www.cyberciti.biz/faq/how-to-install-nginx-web-server-on-alpine-linux/)
 
 - [Alpine packages](https://pkgs.alpinelinux.org/packages)
@@ -237,6 +235,7 @@ docker ps
 - [Download grafana](https://grafana.com/grafana/download?platform=linux)
 - https://github.com/grafana/grafana/blob/master/packaging/docker/Dockerfile
 - https://github.com/grafana/grafana/blob/master/Dockerfile
+
 ### 
 - [Set up localhost windows](https://stackoverflow.com/questions/42866013/docker-toolbox-localhost-not-working/45822356#45822356)
 
@@ -248,9 +247,6 @@ docker ps
 ### wordpress
 - [Editing wp-config-php](https://wordpress.org/support/article/editing-wp-config-php/)
 
-### Others
-- https://github.com/VictorTennekes/ft_services
-
 ### PHP
 - [phpMyAdmin blowfish secret generator](https://phpsolved.com/phpmyadmin-blowfish-secret-generator/?g=[insert_php]echo%20$code;[/insert_php])
 
@@ -260,6 +256,9 @@ docker ps
 ### Configmap and secrets
 - [How to create a Secret with base64 encode values](https://dev4devs.com/2019/10/22/kubernetes-how-to-create-a-secret-with-base64-encode-values-is-it-safe-to-store-confidential-information/)
 -----
+
+### Reverse Proxy
+- [Qué es un 'Reverse Proxy'](https://www.blai.blog/2018/07/que-es-un-reverse-proxy.html)
 
 ## Concepts
 
@@ -271,9 +270,7 @@ These virtual clusters are called namespaces.
 Namespaces are intended for use in environments with many users spread across multiple teams, or projects. 
 For clusters with a few to tens of users, you should not need to create or think about namespaces at all.
 
-
 ### Pod
-
 - Pods are the smallest deployable units of computing that you can create and manage in Kubernetes.
 - Pod is like a container.
 - Pod is the minimun unit of work.
