@@ -7,7 +7,7 @@ CODAM project Curriculum 2019
 ----
 ## Requirements
 
- This proyect is aimed to set up a multi-service cluster. It must meet the following requirements:
+ This project is aimed to set up a multi-service cluster. It must meet the following requirements:
 
 - You must use Kubernetes
 - Each service will have to _run in a dedicated container_.
@@ -24,7 +24,7 @@ Mandatory set ups:
 - A **FTPS** server listening on port 21.
 - A **Grafana** platform, listening on port 3000, linked with an _InfluxDB database_.
 
-#### Restriccions
+#### :no_entry: Restriccions 
 
 - It is forbidden to take already build images or use services like DockerHub.
 - Usage of Node Port services, Ingress Controller object or kubectl port-forward command is prohibited.
@@ -32,32 +32,46 @@ Mandatory set ups:
 
 ## Prerequisites
 
-:warning: For Windows, if you are using powershell, be sure to run as Administrator.
+For performance reasons, it is recommended to run this project on MacOs or Linux. In this repository, the scripts were made for MacOs. However, in the *setup.sh* script, you can find some notes about Windows (10 Home edition).
+
+:warning: For the installations on Windows, if you are using powershell, be sure to run as Administrator.
 
 1. For Kubernetes commands: [Install kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 2. For Kubernetes cluster:[Install minikube](https://minikube.sigs.k8s.io/docs/start/)
 3. For Virtual Machine: [Install virtualBox](https://www.virtualbox.org/)
 4. For testing FTP server is highly recommended: [Install FileZilla](https://filezilla-project.org/)
 
-:wink: For testing in CODAM pcs, you can use _CODAM_config.sh_ script.
+:wink: For testing in CODAM pcs, before run *setup.sh* script, you can use _CODAM_config.sh_ script.
 
-## Outputs
+---
+## How to build :hammer:
+
+1. Clone the repository and go to folder ```cd ft_services```
+2. Type on the terminal ```bash setup.sh```
+
+---
+## Resources :books:
+
+More info in the Wiki!
+
+----
+## Outputs 😎
 
 - VirtualBox
 <p align="center"><img src="https://github.com/ingdicath/images_md/blob/main/VM_minikube.png" width="60%" height="60%"></p>
 
 - Dashboard 
-<p align="center"><img src="https://github.com/ingdicath/images_md/blob/main/deployments.png" width="60%" height="60%"></p>
-<p align="center"><img src="https://github.com/ingdicath/images_md/blob/main/dash_services.png" width="60%" height="60%"></p>
+<p align="center"><img src="https://github.com/ingdicath/images_md/blob/main/deployments.png" width="70%" height="70%"></p>
+<p align="center"><img src="https://github.com/ingdicath/images_md/blob/main/dash_services.png" width="70%" height="70%"></p>
 
 - Nginx
-<p align="center"><img src="https://github.com/ingdicath/images_md/blob/main/nginx.png" width="60%" height="60%"></p>
+<p align="center"><img src="https://github.com/ingdicath/images_md/blob/main/nginx.png" width="70%" height="70%"></p>
 
 - Wordpress
-<p align="center"><img src="https://github.com/ingdicath/images_md/blob/main/wordpress.png" width="60%" height="60%"></p>
+<p align="center"><img src="https://github.com/ingdicath/images_md/blob/main/wordpress.png" width="70%" height="70%"></p>
 
 - Phpmyadmin
-<p align="center"><img src="https://github.com/ingdicath/images_md/blob/main/phpmyadmin.png" width="60%" height="60%"></p>
+<p align="center"><img src="https://github.com/ingdicath/images_md/blob/main/phpmyadmin.png" width="70%" height="70%"></p>
 
 - Grafana
 <p align="center"><img src="https://github.com/ingdicath/images_md/blob/main/grafana.png" width="60%" height="60%"></p>
