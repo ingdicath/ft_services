@@ -47,7 +47,9 @@ For performance reasons, it is recommended to run this project on MacOs or Linux
 ## How to build :hammer:
 
 1. Clone the repository and go to folder ```cd ft_services```
-2. Type on the terminal ```bash setup.sh```
+2. Type in the terminal ```bash setup.sh```
+3. Type in a new terminal ```kubectl get all``` for display services, pods, deployments, etc.
+<p align="center"><img src="https://github.com/ingdicath/images_md/blob/main/kubectl.png" width="70%" height="70%"></p>
 
 ---
 ## Resources :books:
