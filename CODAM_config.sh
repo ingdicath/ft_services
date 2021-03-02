@@ -12,9 +12,9 @@ WHITE='\033[0;37m'
 # 					PRELIMINARY CHECKS 						#
 # -----------------------------------------	---------------	#
 
-# ********** CHECK FOR DOCKER DESKTOP & VM  **********
+# ********** CHECK FOR VM  ************
 
-# In Manage Software Center, install VirtualBoxfrom and Docker icons
+# In Manage Software Center, install VirtualBox from icon
 
 
 # ********** CHECK HOMEBREW **********
@@ -106,11 +106,5 @@ echo -e "$GREEN docker linking completed 👍\n$RESET"
 # kubectl delete -f srcs/grafana/srcs/grafana.yaml
 # kubectl delete -f srcs/influxdb/srcs/influxdb.yaml
 # kubectl delete -f srcs/telegraf/srcs/telegraf.yaml
-
-# # ********** REMOVING DOCKER PROPERTIES  **********
-
-# echo -e "\n$PURPLE Deleting docker images & containers...$RESET"
-# docker container prune -f
-# docker image prune -a --force
 
 # echo -e "\n$GREEN Cleaning completed 👍$RESET"
