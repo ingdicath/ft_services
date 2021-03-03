@@ -85,7 +85,7 @@ More info in the Wiki!
 - Filezilla
 <p align="center"><img src="https://github.com/ingdicath/images_md/blob/main/filezilla.png" width="60%" height="60%"></p>
 
-- Certificate - Filezila
+- Certificate - Filezilla
 <p align="center"><img src="https://github.com/ingdicath/images_md/blob/main/ft_services_certificate.png" width="50%" height="50%"></p>
 
 
