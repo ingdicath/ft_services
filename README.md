@@ -41,8 +41,11 @@ For performance reasons, it is recommended to run this project on MacOs or Linux
 3. For Virtual Machine: [Install virtualBox](https://www.virtualbox.org/)
 4. For testing FTP server is highly recommended: [Install FileZilla](https://filezilla-project.org/)
 
-:warning: For the installations on Windows, if you are using powershell, be sure to run as Administrator.
 :wink: For testing in CODAM pcs, before run *setup.sh* script, you can use _CODAM_config.sh_ script.
+
+#### For setups on Windows: :warning: 
+- If you are using powershell, be sure to run as Administrator.
+- For running script files, it is necessary to have installed a Linux-like interface (Cygwing e.g.).
 
 ---
 ## How to build :hammer:
