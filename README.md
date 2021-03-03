@@ -45,7 +45,7 @@ For performance reasons, it is recommended to run this project on MacOs or Linux
 
 #### For setups on Windows: :warning: 
 - If you are using powershell, be sure to run as Administrator.
-- For running script files, it is necessary to have installed a Linux-like interface (Cygwing e.g.).
+- For running script files, it is necessary to have installed a Linux-like interface (Cygwin e.g.).
 
 ---
 ## How to build :hammer:
