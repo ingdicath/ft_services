@@ -107,4 +107,11 @@ echo -e "$GREEN docker linking completed 👍\n$RESET"
 # kubectl delete -f srcs/influxdb/srcs/influxdb.yaml
 # kubectl delete -f srcs/telegraf/srcs/telegraf.yaml
 
+# # ********** REMOVING DOCKER OBJECTS **********
+# docker container prune -f
+# docker image prune -a --force
+
+# # ********** REMOVING MINIKUBE **********
+# minikube delete
+
 # echo -e "\n$GREEN Cleaning completed 👍$RESET"
